@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Pragma" content="no-cache">
+            <meta http-equiv="Cache-Control" content="no-cache">
+                <meta http-equiv="Expires" content="0">
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                    <meta charset="UTF-8">
+                        <meta name="viewport" content="width=1920,initial-scale=0.5333333333,user-scalable=no,minimum-scale=0.5333333333,maximum-scale = 0.5333333333,target-densitydpi=device-dpi">
+                            <title>试题详情</title>
+                            <link href="css/swiper-3.4.2.min.css" rel="stylesheet" />
+                            <link href="css/base.css" rel="stylesheet" />
+                            <link href="css/main.css" rel="stylesheet" />
+                            <style>
+                                html, body {
+                                    position: relative;
+                                    height: 100%;
+                                }
+                            .h100{
+                                height: 100%!important;
+                                
+                                
+                            }
+                            body {
+                                background: #000;
+                                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                                color:#000;
+                                margin: 0;
+                                padding: 0;
+                            }
+                            .container {
+                                width: 100%;
+                                position: relative;
+                            }
+                            .cqTitle{
+                                width: 100%;
+                                line-height: 96px;
+                                font-size: 30px;
+                                height: 90px;
+                                background: #fff;
+                                border-bottom: 1px solid #bbb;
+                                text-align: center;
+                                position: relative;
+                                z-index: 1111;
+                            }
+                            .cqTitle span{
+                                text-align: center;
+                                display: inline-block;
+                            }
+                            .cBack{
+                                position: absolute;
+                                font-size: 28px;
+                                color: #5EB8DA;
+                                cursor: pointer;
+                                display: block;
+                                line-height: 103px;
+                                left: 60px;
+                            }
+                            .arrow{
+                                width: 20px;
+                                height: 30px;
+                                background: url(css/image/arrow-icon2.png) no-repeat;
+                                display: inline-block;
+                                position: absolute;
+                                top: 38px;
+                                left: 30px;
+                            }
+                            .swiper-container {
+                                width: 100%;
+                                height: 300px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            }
+                            .swiper-slide {
+                                background-size: cover;
+                                background-position: center;
+                                background-color: #fff;
+                                width: 100%;
+                                height: 100%;
+                                color: #2E2D3C;
+                            }
+                            .swiper-slide .picContent{
+                                text-indent: 2em;
+                                height: 96%;
+                                margin: 1% 2%;
+                                overflow: hidden;
+                                font-size: 1.3em;
+                                line-height: 2em;
+                            }
+                            .swiper-slide img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                            .gallery-top {
+                                height: 80%;
+                                width: 100%;
+                            }
+                            .gallery-thumbs {
+                                height: 20%;
+                                box-sizing: border-box;
+                                padding: 10px 0;
+                            }
+                            .gallery-thumbs .swiper-slide {
+                                width: 25%;
+                                height: 100%;
+                                opacity: 0.4;
+                                color: #2E2D3C;
+                                background-color: #fff;
+                            }
+                            .gallery-thumbs .picSmallContent{
+                                font-size:0.3em;
+                                line-height: 1em;
+                                text-indent: 2em;
+                                height: 96%;
+                                margin: 1% 2%;
+                                overflow: hidden;
+                            }
+                            .gallery-thumbs .swiper-slide-active {
+                                opacity: 1;
+                            }
+                            </style>
+    </head>
+    <body class="hideOff">
+        <div class="container h" ng-controller="checkPic">
+            <div class="cqTitle">
+                <div class="arrow"></div>
+                <a href="javascript:void(0);" class="cBack" ng-click="comBack()">返回</a>
+                <span>试题详情</span>
+            </div>
+            <div class="picBlock" style="height:1350px">
+                <div class="swiper-container gallery-top swiper-container-horizontal">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-active" ng-repeat="picFont in picList">
+                            <div ng-switch="{{picFont.type}}" class="h100">
+                                <div ng-switch-when="2" style="width: 100%;height: 100%;">
+                                    <video controls="controls" width="100%">
+                                        
+                                        <source src="{{picFont.casedetail}}" type="video/mp4" />
+                                        
+                                    </video>
+                                    
+                                        </div>
+                                <div ng-switch-when="1" style="width: 100%;height: 100%;">
+                                            <img ng-src="data:image/png;base64,{{picFont.casedetail}}" style="width: 100%;height: 100%;">
+                                                </div>
+                                <div ng-switch-when="0" class="h100" style="overflow-y:auto">
+                                    <ul>
+                                    <div class="picContent" ng-bind-html="picFont.casedetail"></div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white"></div>
+                    <div class="swiper-button-prev swiper-button-white"></div>
+                </div>
+                <div class="swiper-container gallery-thumbs swiper-container-horizontal">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-active" ng-repeat="picFont in picList">
+                            <div ng-switch="{{picFont.type}}" class="h100">
+                                <div ng-switch-when="2" style="width: 100%;height: 100%;">
+                                    <video controls="controls" width="100%">
+                                        
+                                        <source src="{{picFont.casedetail}}" type="video/mp4" />
+                                        
+                                    </video>
+                                    
+                                </div>
+                                <div ng-switch-when="1" style="width: 100%;height: 100%;">
+                                    <img ng-src="data:image/png;base64,{{picFont.casedetail}}" style="width: 100%;height: 100%;">
+                                        </div>
+                                <div ng-switch-when="0" class="h100">
+                                    <div class="picSmallContent" ng-bind-html="picFont.casedetail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="../../Scripts/bower_components/requirejs/require.js"></script>
+    <script type="text/javascript">
+        require(["angular", "jquery", "swiper", "layer", "ngTap","webInterface","ngsanitize"], function (angular, $, Swiper, layer, ngTap,webInterface,ngsanitize) {
+                var loading = layer.load(1, {
+                                         shade: [1,'#fff']
+                                         });
+                
+                <!--        var h = $(window).height();-->
+                <!--        var tH = $(".cqTitle").height();-->
+                <!--        var picH = h - tH;-->
+                <!--        $(".h").css('height', h);-->
+                <!--        $(".picBlock").css('height', picH);-->
+                <!--        window.onresize = function () {-->
+                <!--            var h = $(window).height();-->
+                <!--            var tH = $(".cqTitle").height();-->
+                <!--            var picH = h - tH;-->
+                <!--            $(".h").css('height', h);-->
+                <!--            $(".picBlock").css('height', picH);-->
+                <!--        };-->
+                
+                
+                
+                
+                var appStudent = angular.module('appModule', ['directive.ngTap','ngSanitize']);
+                appStudent.controller('checkPic', function ($scope) {
+                                      window.var_listVal = top.window.var_listVal;
+                                      window.examination_id = window.var_listVal.examination_id;
+                                      window.casebasic_id = window.var_listVal.casebasic_id;
+                                      $scope.picList = $.parseJSON($.view.getCaseBasicById(window.examination_id, window.casebasic_id));
+
+                                      $scope.comBack = function () {
+                                      
+                                      var index = parent.layer.getFrameIndex(window.name);
+                                      parent.layer.close(index);
+                                      };
+                                      
+                                      });
+                angular.bootstrap(document, ['appModule']);
+                var num = $(".swiper-slide").length;
+                
+                var galleryTop = new Swiper('.gallery-top', {
+                                            nextButton: '.swiper-button-next',
+                                            prevButton: '.swiper-button-prev',
+                                            spaceBetween: 10,
+                                            loop: true,
+                                            loopedSlides: num,
+                                            slidesPerView: 'auto',
+                                            observer: true,
+                                            observeParents: true,
+                                            onSlideChangeEnd: function(swiper){
+                                          
+                                            $('video').trigger('pause');
+                                            }
+                                            });
+                var galleryThumbs = new Swiper('.gallery-thumbs', {
+                                               spaceBetween: 10,
+                                               centeredSlides: true,
+                                               slidesPerView: 'auto',
+                                               touchRatio: 0.2,
+                                               loop: true,
+                                               loopedSlides: num,
+                                               slideToClickedSlide: true,
+                                               observer: true,
+                                               observeParents: true
+                                               });
+                galleryTop.params.control = galleryThumbs;
+                galleryThumbs.params.control = galleryTop;
+                setTimeout(function () {
+                           layer.close(loading);
+                           },300);
+                $("body").removeClass("hideOff").addClass("showIn");
+                })
+        </script>
+</html>
